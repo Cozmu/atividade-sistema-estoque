@@ -6,6 +6,7 @@ import { notFound } from './middlewares/notFound';
 import categoriaRouter from './routers/Categoria.router';
 import fornecedorRouter from './routers/Fornecedor.router';
 import produtoRouter from './routers/Produto.router';
+import movimentacaoRouter from './routers/Movimentacao.router';
 
 class App {
   public app: express.Express;
@@ -38,6 +39,7 @@ class App {
     this.app.use(categoriaRouter);
     this.app.use(fornecedorRouter);
     this.app.use(produtoRouter);
+    this.app.use(movimentacaoRouter);
   }
 
   private errorHandling(): void {

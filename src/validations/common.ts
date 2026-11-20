@@ -34,3 +34,15 @@ export const isPositiveInt = (value: unknown): value is number =>
 
 export const isNonNegativeInt = (value: unknown): value is number =>
   typeof value === 'number' && Number.isInteger(value) && value >= 0;
+
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+
+export function parseDate(value: unknown, field: string): string {
+  const isValid =
+    typeof value === 'string' &&
+    DATE_REGEX.test(value) &&
+    new Date(`${value}T00:00:00Z`).toISOString().startsWith(value);
+  if (!isValid) throw new BadRequestError(`Campo ${field} deve estar no formato AAAA-MM-DD`);
+
+  return value;
+}
