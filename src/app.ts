@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { env } from './config/env';
+import { errorHandler } from './middlewares/errorHandler';
+import { notFound } from './middlewares/notFound';
 
 class App {
   public app: express.Express;
@@ -9,7 +11,7 @@ class App {
     this.app = express();
     this.config();
     this.routes();
-    // this.errorHandling();
+    this.errorHandling();
   }
 
   private config(): void {
@@ -32,10 +34,10 @@ class App {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
   }
 
-  // private errorHandling(): void {
-  //   this.app.use(notFound);
-  //   this.app.use(errorHandler);
-  // }
+  private errorHandling(): void {
+    this.app.use(notFound);
+    this.app.use(errorHandler);
+  }
 
   public start(port: number): void {
     this.app.listen(port, () => console.log(`Running on port ${port}`));
