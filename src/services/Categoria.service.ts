@@ -1,11 +1,13 @@
 import { ModelStatic } from 'sequelize';
 import Categoria from '../database/models/Categoria.model';
-import { NotFoundError } from '../errors/HttpError';
+import Produto from '../database/models/Produto.model';
+import { ConflictError, NotFoundError } from '../errors/HttpError';
 import { CategoriaValidation } from '../validations/CategoriaValidation';
 
 export class CategoriaService {
   constructor(
     private _Categoria: ModelStatic<Categoria>,
+    private _Produto: ModelStatic<Produto>,
     private _categoriaValidation: CategoriaValidation,
   ) {}
 
@@ -19,5 +21,28 @@ export class CategoriaService {
     if (!categoria) throw new NotFoundError('Categoria não encontrada');
 
     return categoria;
+  }
+
+  public async create(body: unknown): Promise<Categoria> {
+    const data = this._categoriaValidation.validateBody(body);
+    return this._Categoria.create(data);
+  }
+
+  public async update(id: unknown, body: unknown): Promise<Categoria> {
+    const categoria = await this.findById(id);
+    const data = this._categoriaValidation.validateBody(body);
+
+    return categoria.update(data);
+  }
+
+  public async remove(id: unknown): Promise<void> {
+    const categoria = await this.findById(id);
+
+    const produtos = await this._Produto.count({ where: { categoriaId: categoria.id } });
+    if (produtos > 0) {
+      throw new ConflictError(`Categoria possui ${produtos} produto(s) vinculado(s)`);
+    }
+
+    await categoria.destroy();
   }
 }

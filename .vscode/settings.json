@@ -4,9 +4,12 @@
     "source.fixAll.eslint": "always"
   },
   "eslint.validate": ["typescript"],
-  "eslint.workingDirectories": [{ "directory": ".", "changeProcessCWD": true }],
+  "eslint.workingDirectories": [{ "directory": "backend", "changeProcessCWD": true }],
   "prettier.enable": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editorAssociations": {
+    "*.md": "vscode.markdown.preview.editor"
   }
 }

@@ -6,3 +6,25 @@ export function parsePositiveInt(value: unknown, message: string): number {
 
   return number;
 }
+
+export const isPlainObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+
+export function parseRequiredText(value: unknown, max: number, field: string): string {
+  const text = typeof value === 'string' ? value.trim() : '';
+  if (text === '') throw new BadRequestError(`Campo ${field} é obrigatório`);
+  if (text.length > max) throw new BadRequestError(`Campo ${field}: máximo de ${max} caracteres`);
+
+  return text;
+}
+
+export function parseOptionalText(value: unknown, max: number, field: string): string | null {
+  if (value === undefined || value === null) return null;
+  if (typeof value !== 'string') throw new BadRequestError(`Campo ${field} inválido`);
+
+  const text = value.trim();
+  if (text === '') return null;
+  if (text.length > max) throw new BadRequestError(`Campo ${field}: máximo de ${max} caracteres`);
+
+  return text;
+}
