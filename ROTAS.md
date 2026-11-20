@@ -28,9 +28,9 @@ Legenda: ✅ feita · ⬜ pendente
 
 | Status | Método | Rota | O que faz |
 |---|---|---|---|
-| ⬜ | GET | `/produtos` | Lista. Filtros: `?categoriaId=`, `?fornecedorId=`, `?ativo=` |
-| ⬜ | GET | `/produtos/estoque-baixo` | Produtos com `qntAtual <= estoqueMinimo` |
-| ⬜ | GET | `/produtos/:id` | Detalhe com `categoria` e `fornecedor` |
+| ✅ | GET | `/produtos` | Lista com `categoria` e `fornecedor` resumidos (id, nome). Filtros combináveis: `?categoriaId=`, `?fornecedorId=`, `?ativo=true\|false` |
+| ✅ | GET | `/produtos/estoque-baixo` | Produtos **ativos** com `qntAtual <= estoqueMinimo` |
+| ✅ | GET | `/produtos/:id` | Detalhe com `categoria` e `fornecedor` completos |
 | ⬜ | GET | `/produtos/:id/movimentacoes` | Histórico de movimentações do produto |
 | ⬜ | POST | `/produtos` | Cria (`qntAtual` começa em 0; 409 se o código já existir) |
 | ⬜ | PUT | `/produtos/:id` | Edita dados cadastrais (não altera `qntAtual`) |

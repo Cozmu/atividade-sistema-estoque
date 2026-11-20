@@ -29,8 +29,8 @@ export class CategoriaService {
   }
 
   public async update(id: unknown, body: unknown): Promise<Categoria> {
-    const categoria = await this.findById(id);
     const data = this._categoriaValidation.validateBody(body);
+    const categoria = await this.findById(id);
 
     return categoria.update(data);
   }
