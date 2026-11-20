@@ -28,3 +28,9 @@ export function parseOptionalText(value: unknown, max: number, field: string): s
 
   return text;
 }
+
+export const isPositiveInt = (value: unknown): value is number =>
+  typeof value === 'number' && Number.isInteger(value) && value > 0;
+
+export const isNonNegativeInt = (value: unknown): value is number =>
+  typeof value === 'number' && Number.isInteger(value) && value >= 0;

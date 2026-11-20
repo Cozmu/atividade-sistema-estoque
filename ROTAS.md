@@ -32,9 +32,9 @@ Legenda: ✅ feita · ⬜ pendente
 | ✅ | GET | `/produtos/estoque-baixo` | Produtos **ativos** com `qntAtual <= estoqueMinimo` |
 | ✅ | GET | `/produtos/:id` | Detalhe com `categoria` e `fornecedor` completos |
 | ⬜ | GET | `/produtos/:id/movimentacoes` | Histórico de movimentações do produto |
-| ⬜ | POST | `/produtos` | Cria (`qntAtual` começa em 0; 409 se o código já existir) |
-| ⬜ | PUT | `/produtos/:id` | Edita dados cadastrais (não altera `qntAtual`) |
-| ⬜ | PATCH | `/produtos/:id/ativo` | Ativa/desativa (no lugar do DELETE) |
+| ✅ | POST | `/produtos` | Cria. Body: `nome` (até 120), `codigo` (até 50, único), `descricao` (opcional, até 1000), `unidade` (`un`\|`kg`\|`cx`), `categoriaId`, `fornecedorId` (números, precisam existir), `estoqueMinimo` (inteiro >= 0). `qntAtual` começa em 0 e `ativo` em true; se vierem no body, são ignorados. 409 se o código já existir |
+| ✅ | PUT | `/produtos/:id` | Substitui os dados cadastrais (mesmo body do POST). Não altera `qntAtual` nem `ativo` |
+| ✅ | PATCH | `/produtos/:id/ativo` | Body: `{ "ativo": true \| false }`. Ativa/desativa (no lugar do DELETE) |
 
 ## Movimentações
 

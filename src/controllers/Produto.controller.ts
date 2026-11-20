@@ -19,4 +19,19 @@ export class ProdutoController {
     const result = await this._produtoService.findById(req.params.id);
     res.status(200).json(result);
   };
+
+  public create = async (req: Request, res: Response): Promise<void> => {
+    const result = await this._produtoService.create(req.body);
+    res.status(201).json(result);
+  };
+
+  public update = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
+    const result = await this._produtoService.update(req.params.id, req.body);
+    res.status(200).json(result);
+  };
+
+  public updateAtivo = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
+    const result = await this._produtoService.updateAtivo(req.params.id, req.body);
+    res.status(200).json(result);
+  };
 }
