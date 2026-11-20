@@ -30,14 +30,14 @@ module.exports = {
       },
       motivo: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       data: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('NOW')
-      }
-    })
+        defaultValue: Sequelize.fn('NOW'),
+      },
+    });
   },
 
   async down(queryInterface) {

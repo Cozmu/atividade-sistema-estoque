@@ -16,9 +16,9 @@ module.exports = {
       },
       descricao: {
         type: Sequelize.STRING(255),
-        allowNull: true
-      }
-    })
+        allowNull: true,
+      },
+    });
   },
 
   async down(queryInterface) {

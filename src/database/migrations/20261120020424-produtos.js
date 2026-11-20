@@ -21,7 +21,7 @@ module.exports = {
       },
       descricao: {
         type: Sequelize.TEXT,
-        allowNull: true
+        allowNull: true,
       },
       unidade: {
         type: Sequelize.ENUM('un', 'kg', 'cx'),
@@ -60,8 +60,8 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true,
-      }
-    })
+      },
+    });
   },
 
   async down(queryInterface) {

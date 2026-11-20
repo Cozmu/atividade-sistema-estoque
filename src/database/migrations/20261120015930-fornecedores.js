@@ -17,17 +17,17 @@ module.exports = {
       cnpj: {
         type: Sequelize.STRING(18),
         allowNull: false,
-        unique: true
+        unique: true,
       },
       telefone: {
         type: Sequelize.STRING(20),
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING(80),
-        allowNull: false
+        allowNull: false,
       },
-    })
+    });
   },
 
   async down(queryInterface) {
