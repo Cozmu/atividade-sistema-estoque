@@ -4,6 +4,7 @@ import { env } from './config/env';
 import { errorHandler } from './middlewares/errorHandler';
 import { notFound } from './middlewares/notFound';
 import categoriaRouter from './routers/Categoria.router';
+import fornecedorRouter from './routers/Fornecedor.router';
 
 class App {
   public app: express.Express;
@@ -34,6 +35,7 @@ class App {
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     this.app.use(categoriaRouter);
+    this.app.use(fornecedorRouter);
   }
 
   private errorHandling(): void {

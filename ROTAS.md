@@ -18,11 +18,11 @@ Legenda: ✅ feita · ⬜ pendente
 
 | Status | Método | Rota | O que faz |
 |---|---|---|---|
-| ⬜ | GET | `/fornecedores` | Lista todos |
-| ⬜ | GET | `/fornecedores/:id` | Busca um |
-| ⬜ | POST | `/fornecedores` | Cria (409 se o CNPJ já existir) |
-| ⬜ | PUT | `/fornecedores/:id` | Edita (409 se o CNPJ já existir) |
-| ⬜ | DELETE | `/fornecedores/:id` | Remove (409 se tiver produtos vinculados) |
+| ✅ | GET | `/fornecedores` | Lista todos, ordenados por nome |
+| ✅ | GET | `/fornecedores/:id` | Busca um (400 id inválido, 404 não encontrado) |
+| ✅ | POST | `/fornecedores` | Cria. Body: `nome` (até 120), `cnpj` (14 dígitos, com ou sem máscara), `telefone` (até 20), `email` (até 80). Todos obrigatórios. 409 se o CNPJ já existir |
+| ✅ | PUT | `/fornecedores/:id` | Substitui os dados (mesmo body do POST; 409 se o CNPJ for de outro fornecedor) |
+| ✅ | DELETE | `/fornecedores/:id` | Remove, responde 204 (409 se tiver produtos vinculados) |
 
 ## Produtos
 
